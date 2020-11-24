@@ -4,7 +4,7 @@ Password Input Field Package created with flutter.
 
 The source code is **100% Dart and Flutter**, and all necessary files are located in the [/lib](https://github.com/ffr-devteam/ffr_pwd_input_field/tree/main/lib) folder
 
-## Installation
+## Installation 
 
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
