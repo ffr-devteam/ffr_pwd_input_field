@@ -20,38 +20,87 @@ import 'package:ffr_pwd_input_field/ffr_pwd_input_field.dart';
 ## Basic Ussage
 
 ```dart
-class HomeScreen extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _formKey = GlobalKey<FormState>();
+  final _testKey = GlobalKey<FormFieldState<String>>();
+  bool isError = false;
 
-  bool like = true;
+  String text = '';
+
+  void _saveForm() {
+    if (_formKey.currentState.validate()) {
+      if (isError == false) {
+        setState(() {
+          text = _testKey.currentState.value;
+        });
+        _testKey.currentState.reset();
+      } else {
+        _scaffoldKey.currentState
+            .showSnackBar(SnackBar(content: Text('A value must be entered')));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('FFR Custom Switch Example'),
+        title: Text(widget.title),
       ),
-      body: Column(
+      body: Center(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FFRCustomSwitch(
-                thumbColor: Colors.
-                lable: 'Do you like this package?',
-                inactiveColor: Colors.red,
-                activeColor: Colors.green,
-                value: like,
-                onChanged: (newValue) {
-                    setState(){
-                        like = newValue;
-                    }
-                },
-            );
+          children: [
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
+                    child: FFRPwdInputField(
+                      backgroundColor: Colors.lightGreen,
+                      icon: Icon(Icons.lock),
+                      fieldKey: _testKey,
+                      isError: isError,
+                      validate: (String newValue) {
+                        if (newValue.isEmpty) {
+                          setState(() {
+                            isError = true;
+                          });
+                        } else {
+                          setState(() {
+                            isError = false;
+                          });
+                        }
+                      },
+                      textStyle: TextStyle(color: Colors.black, fontSize: 20),
+                      errorColor: Colors.red,
+                      hidePwd: Icon(Icons.visibility_off),
+                      showPwd: Icon(Icons.visibility),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: _saveForm,
+                    child: Text('Press me'),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 30),
+            text == '' ? Container() : Text(text),
           ],
         ),
+      ),
     );
   }
 }
