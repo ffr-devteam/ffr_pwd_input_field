@@ -1,6 +1,6 @@
 name: ffr_pwd_input_field
 description: A custom password input field with rounded corners and a leading and trailing icon with customizing options by the ffr-devteam
-version: 0.0.1
+version: 0.0.2
 homepage: https://fair-rates.ch
 repository: https://github.com/ffr-devteam/ffr_pwd_input_field
 
