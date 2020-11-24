@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30),
                     child: FFRPwdInputField(
+                      hintText: 'I am a hint',
                       backgroundColor: Colors.lightGreen,
                       icon: Icon(Icons.lock),
                       fieldKey: _testKey,

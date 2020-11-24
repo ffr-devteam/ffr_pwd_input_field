@@ -14,6 +14,7 @@ class FFRPwdInputField extends StatefulWidget {
     @required this.errorColor,
     @required this.hidePwd,
     @required this.showPwd,
+    @required this.hintText,
   }) : super(key: key);
 
   final Color backgroundColor;
@@ -25,6 +26,7 @@ class FFRPwdInputField extends StatefulWidget {
   final bool isError;
   final Icon showPwd;
   final Icon hidePwd;
+  final String hintText;
 
   @override
   _FFRPwdInputFieldState createState() => _FFRPwdInputFieldState();
@@ -57,7 +59,7 @@ class _FFRPwdInputFieldState extends State<FFRPwdInputField> {
               key: widget.fieldKey,
               style: widget.textStyle,
               decoration: InputDecoration(
-                hintText: 'Password',
+                hintText: widget.hintText,
                 hintStyle: widget.textStyle,
                 border: InputBorder.none,
                 icon: widget.icon,
