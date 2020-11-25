@@ -24,12 +24,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final FocusNode _testNode = FocusNode();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final _testKey = GlobalKey<FormFieldState<String>>();
   bool isError = false;
-
   String text = '';
+
+  @override
+  void dispose() {
+    _testNode.dispose();
+    super.dispose();
+  }
 
   void _saveForm() {
     if (_formKey.currentState.validate()) {
@@ -63,6 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30),
                     child: FFRPwdInputField(
+                      autofocus: true,
+                      focusNode: _testNode,
+                      onFieldSubmitted: (term) {
+                        _testNode.unfocus();
+                      },
                       hintText: 'I am a hint',
                       backgroundColor: Colors.lightGreen,
                       icon: Icon(Icons.lock),

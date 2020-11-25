@@ -16,6 +16,9 @@ class FFRPwdInputField extends StatefulWidget {
     @required this.hidePwd,
     @required this.showPwd,
     @required this.hintText,
+    this.autofocus,
+    this.onFieldSubmitted,
+    this.focusNode,
   }) : super(key: key);
 
   final Color backgroundColor;
@@ -28,6 +31,9 @@ class FFRPwdInputField extends StatefulWidget {
   final Icon showPwd;
   final Icon hidePwd;
   final String hintText;
+  final bool autofocus;
+  final Function onFieldSubmitted;
+  final FocusNode focusNode;
 
   @override
   _FFRPwdInputFieldState createState() => _FFRPwdInputFieldState();
@@ -54,6 +60,9 @@ class _FFRPwdInputFieldState extends State<FFRPwdInputField> {
         children: [
           Expanded(
             child: TextFormField(
+              focusNode: widget.focusNode,
+              onFieldSubmitted: widget.onFieldSubmitted,
+              autofocus: widget.autofocus,
               obscureText: _obscureText,
               validator: widget.validate,
               key: widget.fieldKey,
