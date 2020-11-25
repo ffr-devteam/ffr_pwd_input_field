@@ -16,7 +16,7 @@ class FFRPwdInputField extends StatefulWidget {
     @required this.hidePwd,
     @required this.showPwd,
     @required this.hintText,
-    this.autofocus,
+    this.autofocus = false,
     this.onFieldSubmitted,
     this.focusNode,
   }) : super(key: key);
