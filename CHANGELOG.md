@@ -5,3 +5,7 @@
 ## 0.0.2 - 24.11.2020
 
 * added option to customize hinttext
+
+## 0.0.3 - 24.11.2020
+
+* added different size for web use

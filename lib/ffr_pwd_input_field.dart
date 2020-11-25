@@ -1,5 +1,6 @@
 library ffr_pwd_input_field;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class FFRPwdInputField extends StatefulWidget {
@@ -33,13 +34,12 @@ class FFRPwdInputField extends StatefulWidget {
 }
 
 class _FFRPwdInputFieldState extends State<FFRPwdInputField> {
-
   bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350,
+      width: kIsWeb ? 400 : 350,
       height: 50,
       padding: const EdgeInsets.only(left: 20, right: 20),
       decoration: BoxDecoration(
@@ -54,7 +54,7 @@ class _FFRPwdInputFieldState extends State<FFRPwdInputField> {
         children: [
           Expanded(
             child: TextFormField(
-              obscureText: _obscureText ,
+              obscureText: _obscureText,
               validator: widget.validate,
               key: widget.fieldKey,
               style: widget.textStyle,
@@ -67,12 +67,12 @@ class _FFRPwdInputFieldState extends State<FFRPwdInputField> {
             ),
           ),
           GestureDetector(
-            child: _obscureText ?  widget.hidePwd : widget.showPwd,
-            onTap: (){
+            child: _obscureText ? widget.hidePwd : widget.showPwd,
+            onTap: () {
               setState(() {
                 _obscureText = !_obscureText;
               });
-            } ,
+            },
           )
         ],
       ),
