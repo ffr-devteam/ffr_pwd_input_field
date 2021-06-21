@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 
 class FFRPwdInputField extends StatefulWidget {
   const FFRPwdInputField({
-    Key key,
-    @required this.backgroundColor,
-    @required this.icon,
-    @required this.fieldKey,
-    @required this.isError,
-    @required this.validate,
-    @required this.textStyle,
-    @required this.errorColor,
-    @required this.hidePwd,
-    @required this.showPwd,
-    @required this.hintText,
+    Key? key,
+    required this.backgroundColor,
+    required this.icon,
+    required this.fieldKey,
+    required this.isError,
+    required this.validate,
+    required this.textStyle,
+    required this.errorColor,
+    required this.hidePwd,
+    required this.showPwd,
+    required this.hintText,
+    this.autofillHints,
     this.autofocus = false,
     this.onFieldSubmitted,
     this.focusNode,
@@ -32,8 +33,9 @@ class FFRPwdInputField extends StatefulWidget {
   final Icon hidePwd;
   final String hintText;
   final bool autofocus;
-  final Function onFieldSubmitted;
-  final FocusNode focusNode;
+  final Function? onFieldSubmitted;
+  final FocusNode? focusNode;
+  final List<String>? autofillHints;
 
   @override
   _FFRPwdInputFieldState createState() => _FFRPwdInputFieldState();
@@ -60,11 +62,12 @@ class _FFRPwdInputFieldState extends State<FFRPwdInputField> {
         children: [
           Expanded(
             child: TextFormField(
+              autofillHints: widget.autofillHints,
               focusNode: widget.focusNode,
-              onFieldSubmitted: widget.onFieldSubmitted,
+              onFieldSubmitted: widget.onFieldSubmitted as void Function(String)?,
               autofocus: widget.autofocus,
               obscureText: _obscureText,
-              validator: widget.validate,
+              validator: widget.validate as String? Function(String?)?,
               key: widget.fieldKey,
               style: widget.textStyle,
               decoration: InputDecoration(

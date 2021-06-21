@@ -17,3 +17,11 @@
 ## 0.0.5 - 25.11.2020
 
 * bug fixes
+
+## 0.0.6 - 09.06.2021
+
+* added autofillHint support
+
+## 0.0.7 - 21.06.2021
+
+* Migrated to null safety
