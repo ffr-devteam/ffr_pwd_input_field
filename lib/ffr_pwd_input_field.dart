@@ -3,6 +3,9 @@ library ffr_pwd_input_field;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+typedef OnFieldSubmitted = void Function(String string);
+typedef Validate = String ?Function(String? string);
+
 class FFRPwdInputField extends StatefulWidget {
   const FFRPwdInputField({
     Key? key,
@@ -26,14 +29,14 @@ class FFRPwdInputField extends StatefulWidget {
   final TextStyle textStyle;
   final Color errorColor;
   final Icon? icon;
-  final Function validate;
+  final Validate validate;
   final Key fieldKey;
   final bool isError;
   final Icon showPwd;
   final Icon hidePwd;
   final String hintText;
   final bool autofocus;
-  final Function? onFieldSubmitted;
+  final OnFieldSubmitted? onFieldSubmitted;
   final FocusNode? focusNode;
   final List<String>? autofillHints;
 
@@ -64,10 +67,10 @@ class _FFRPwdInputFieldState extends State<FFRPwdInputField> {
             child: TextFormField(
               autofillHints: widget.autofillHints,
               focusNode: widget.focusNode,
-              onFieldSubmitted: widget.onFieldSubmitted as void Function(String)?,
+              onFieldSubmitted: widget.onFieldSubmitted,
               autofocus: widget.autofocus,
               obscureText: _obscureText,
-              validator: widget.validate as String? Function(String?)?,
+              validator: widget.validate,
               key: widget.fieldKey,
               style: widget.textStyle,
               decoration: InputDecoration(
