@@ -7,7 +7,7 @@ class FFRPwdInputField extends StatefulWidget {
   const FFRPwdInputField({
     Key? key,
     required this.backgroundColor,
-    required this.icon,
+    this.icon,
     required this.fieldKey,
     required this.isError,
     required this.validate,
@@ -25,7 +25,7 @@ class FFRPwdInputField extends StatefulWidget {
   final Color backgroundColor;
   final TextStyle textStyle;
   final Color errorColor;
-  final Icon icon;
+  final Icon? icon;
   final Function validate;
   final Key fieldKey;
   final bool isError;
